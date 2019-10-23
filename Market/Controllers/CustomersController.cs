@@ -39,7 +39,7 @@ namespace Market.Controllers
         // GET: Customers/Create
         public ActionResult Create()
         {
-            ViewBag.DocumentTypeID = new SelectList(db.DocumentTypes.OrderBy(c => c.Description), "DocumentTypeID", "Description");
+            ViewBag.DocumentTypeID = new SelectList(db.DocumentTypes.OrderBy(c => c.Customers), "DocumentTypeID", "Description");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace Market.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CustomerID,FirstName,LastName,Phone,Address,Document,DocumentTypeID")] Customer customer)
+        public ActionResult Create([Bind(Include = "CustomerID,FirstName,LastName,Phone,Address,Email,Document,DocumentTypeID")] Customer customer)
         {
             if (ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace Market.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CustomerID,FirstName,LastName,Phone,Address,Document,DocumentTypeID")] Customer customer)
+        public ActionResult Edit([Bind(Include = "CustomerID,FirstName,LastName,Phone,Address,Email,Document,DocumentTypeID")] Customer customer)
         {
             if (ModelState.IsValid)
             {
