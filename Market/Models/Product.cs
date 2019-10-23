@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Market.Models
@@ -17,6 +18,9 @@ namespace Market.Models
         public float Stock { get; set; }
 
         public string Remarks { get; set; }
-        
+
+
+        public virtual ICollection<SupplierProduct> SupplierProducts { get; set; }
+
     }
 }
