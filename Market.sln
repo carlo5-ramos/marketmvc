@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market", "Market\Market.csproj", "{EC4D24B6-12DE-4728-A6A4-5F017D47B36F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Market.Tests", "Market.Tests\Market.Tests.csproj", "{D280DE51-37CC-48A0-8CFE-A1C89F5A1800}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EC4D24B6-12DE-4728-A6A4-5F017D47B36F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC4D24B6-12DE-4728-A6A4-5F017D47B36F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC4D24B6-12DE-4728-A6A4-5F017D47B36F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC4D24B6-12DE-4728-A6A4-5F017D47B36F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D280DE51-37CC-48A0-8CFE-A1C89F5A1800}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D280DE51-37CC-48A0-8CFE-A1C89F5A1800}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D280DE51-37CC-48A0-8CFE-A1C89F5A1800}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D280DE51-37CC-48A0-8CFE-A1C89F5A1800}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56478BF5-6AE6-4E61-A128-9EC678EA178C}
+	EndGlobalSection
+EndGlobal
