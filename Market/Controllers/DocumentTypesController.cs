@@ -1,4 +1,5 @@
 ﻿using Market.Models;
+using System;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
@@ -107,7 +108,14 @@ namespace Market.Controllers
         {
             DocumentType documentType = db.DocumentTypes.Find(id);
             db.DocumentTypes.Remove(documentType);
-            db.SaveChanges();
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                
+            }            
             return RedirectToAction("Index");
         }
 

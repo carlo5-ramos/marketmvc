@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Market.Models
 {
@@ -48,7 +49,15 @@ namespace Market.Models
         [Required(ErrorMessage = "You must enter {0}")]
         public int DocumentTypeID { get; set; }
 
-       
+        [NotMapped]
+        public int Age
+        {
+            get
+            {
+                return DateTime.Now.Year - DateOfBirth.Year;
+            }
+        }
+
         public virtual DocumentType DocumentType { get; set; }
     }
 }
