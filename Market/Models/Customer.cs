@@ -6,25 +6,20 @@ using System.Web;
 
 namespace Market.Models
 {
-    public class Supplier
+    public class Customer
     {
         [Key]
-        public int SupplierID { get; set; }
+        public int CustomerID { get; set; }
 
         [Required(ErrorMessage = "You must enter the field {0}")]
-        [Display(Name = "Supplier Name")]
+        [Display(Name = "First Name")]
         [StringLength(30, ErrorMessage = "The field{0} must contain between  {2} and {1} characters", MinimumLength = 1)]
-        public string Name { get; set; }
+        public string FirstName { get; set; }
 
         [Required(ErrorMessage = "You must enter the field {0}")]
-        [Display(Name = "Contact First Name")]
+        [Display(Name = "Last Name")]
         [StringLength(30, ErrorMessage = "The field{0} must contain between  {2} and {1} characters", MinimumLength = 1)]
-        public string ContactFirstName { get; set; }
-
-        [Required(ErrorMessage = "You must enter the field {0}")]
-        [Display(Name = "Contact Last Name")]
-        [StringLength(30, ErrorMessage = "The field{0} must contain between  {2} and {1} characters", MinimumLength = 1)]
-        public string ContactLastName { get; set; }
+        public string LastName { get; set; }
 
         [Required(ErrorMessage = "You must enter the field {0}")]
         [StringLength(30, ErrorMessage = "The field{0} must contain between  {2} and {1} characters", MinimumLength = 1)]
@@ -35,8 +30,16 @@ namespace Market.Models
         public string Address { get; set; }
 
         [DataType(DataType.EmailAddress)]
-        public string EMail { get; set; }
+        public string Email { get; set; }
 
-        public virtual ICollection<SupplierProduct> SupplierProducts { get; set; }
+        [Required(ErrorMessage = "You must enter the field {0}")]
+        [Display(Name = "Document")]
+        [StringLength(30, ErrorMessage = "The field{0} must contain between  {2} and {1} characters", MinimumLength = 1)]
+        public string Document { get; set; }
+
+        public int DocumentTypeID { get; set; }
+
+
+        public virtual DocumentType DocumentType { get; set; }
     }
 }
