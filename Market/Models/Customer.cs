@@ -41,5 +41,7 @@ namespace Market.Models
 
 
         public virtual DocumentType DocumentType { get; set; }
+
+        public virtual ICollection<Order> Orders { get; set; }
     }
 }
