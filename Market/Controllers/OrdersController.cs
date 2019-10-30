@@ -19,9 +19,9 @@ namespace Market.Controllers
             orderView.Products = new List<ProductOrder>();
             Session["OrderView"] = orderView;
 
-            var list = db.Customers.ToList();
+            var list = db.Customers.ToList();          
+            list.Add(new Customer {CustomerID = 0, FirstName = "[Seleccione un cliente...]" });
             list = list.OrderBy(c => c.FullName).ToList();
-            list.Add(new Customer {CustomerID = 0, FirstName = "[Seleccione un cliente...]" });   
             ViewBag.CustomerID = new SelectList(list, "CustomerID", "FullName");
 
             return View(orderView);
@@ -32,8 +32,8 @@ namespace Market.Controllers
         public ActionResult NewOrder(OrderView orderView)
         {
             var list = db.Customers.ToList();
-            list = list.OrderBy(c => c.FullName).ToList();
             list.Add(new Customer { CustomerID = 0, FirstName = "[Seleccione un cliente...]" });
+            list = list.OrderBy(c => c.FullName).ToList();           
             ViewBag.CustomerID = new SelectList(list, "CustomerID", "FullName");
             return View(orderView);
         }
@@ -41,8 +41,8 @@ namespace Market.Controllers
         public ActionResult AddProduct()
         {
             var list = db.Products.ToList();
-            list = list.OrderBy(p => p.Description).ToList();
-            list.Add(new ProductOrder { ProductID = 0, Description = "[Seleccione un producto...]" });       
+            list.Add(new ProductOrder { ProductID = 0, Description = "[Seleccione un producto...]" });
+            list = list.OrderBy(p => p.Description).ToList();                
             ViewBag.ProductID = new SelectList(list, "ProductID", "Description");
             return View();
 
@@ -56,11 +56,11 @@ namespace Market.Controllers
             if (productID == 0)
             {
                 var list = db.Products.ToList();
-                list = list.OrderBy(c => c.Description).ToList();
-                list.Add(new ProductOrder { ProductID = 0, Description = "[Seleccione un producto...]" });               
+                list.Add(new ProductOrder { ProductID = 0, Description = "[Seleccione un producto...]" });
+                list = list.OrderBy(c => c.Description).ToList();                           
                 ViewBag.ProductID = new SelectList(list, "ProductID", "Description");
                 ViewBag.Error = "Debe seleccionar un producto";
-                return View();
+                return View(productOrder);
             }
 
             var product = db.Products.Find(productID);
@@ -70,25 +70,34 @@ namespace Market.Controllers
                 list.Add(new ProductOrder { ProductID = 0, Description = "Seleccione un producto..." });
                 list = list.OrderBy(c => c.Description).ToList();
                 ViewBag.ProductID = new SelectList(list, "ProductID", "Description");
-                ViewBag.Error = "Pproducto no existe";
+                ViewBag.Error = "Producto no existe";
                 return View(productOrder);
             }
 
-            productOrder = new ProductOrder
+            productOrder = orderView.Products.Find(p => p.ProductID == productID);
+            if (productOrder == null)
             {
-                Description = product.Description,
-                Price = product.Price,
-                ProductID = product.ProductID,
-                Quantity = float.Parse(Request["Quantity"]),
-            };
-            orderView.Products.Add(productOrder);
-            var listC = db.Customers.ToList();
-            listC = listC.OrderBy(c => c.FullName).ToList();
-            listC.Add(new Customer { CustomerID = 0, FirstName = "Seleccione un cliente..." });
-            ViewBag.CustomerID = new SelectList(listC, "CustomerID", "FullName");
-            return View(orderView);
-            return View("NewOrder", orderView);
+                productOrder = new ProductOrder
+                {
+                    Description = product.Description,
+                    Price = product.Price,
+                    ProductID = product.ProductID,
+                    Quantity = float.Parse(Request["Quantity"]),
+                };
+                orderView.Products.Add(productOrder);
+            }
+            else
+            {
+                productOrder.Quantity += float.Parse(Request["Quantity"]);
+            }                       
+            
 
+            var listC = db.Customers.ToList();
+            listC.Add(new Customer { CustomerID = 0, FirstName = "[Seleccione un cliente...]" });
+            listC = listC.OrderBy(c => c.FullName).ToList();
+            ViewBag.CustomerID = new SelectList(listC, "CustomerID", "FullName");
+
+            return View("NewOrder", orderView);
         }
 
         protected override void Dispose(bool disposing)
