@@ -37,7 +37,6 @@ namespace Market.Controllers
         }
 
         // GET: Products/Create
-        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -61,7 +60,6 @@ namespace Market.Controllers
         }
 
         // GET: Products/Edit/5
-        [Authorize]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -93,7 +91,6 @@ namespace Market.Controllers
         }
 
         // GET: Products/Delete/5
-        [Authorize]
         public ActionResult Delete(int? id)
         {
             if (id == null)
