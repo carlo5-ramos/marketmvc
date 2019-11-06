@@ -15,8 +15,6 @@ namespace Market.ViewModels
         [DataType(DataType.EmailAddress)]
         public string EMail { get; set; }
 
-        public RoleView Role { get; set; }
-
         public List<RoleView> Roles { get; set; }
     }
 }

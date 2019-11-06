@@ -40,11 +40,7 @@ namespace Market.Controllers
         public ActionResult Create()
         {
             var list = db.DocumentTypes.ToList();
-            list.Add(new DocumentType
-            {
-                DocumentTypeID = 0,
-                Description = "Seleccione un tipo de documento..."
-            });
+            list.Add(new DocumentType { DocumentTypeID = 0, Description = "[Seleccione un tipo de documento...]"});
             list = list.OrderBy(c => c.Description).ToList();
             ViewBag.DocumentTypeID = new SelectList(list, "DocumentTypeID", "Description");
             return View();

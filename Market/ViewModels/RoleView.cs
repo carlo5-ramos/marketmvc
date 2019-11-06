@@ -7,7 +7,7 @@ namespace Market.ViewModels
 {
     public class RoleView
     {
-        public string RolID { get; set; }
+        public string RoleID { get; set; }
 
         public string Name { get; set; }
     }
