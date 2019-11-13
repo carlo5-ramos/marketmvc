@@ -18,7 +18,7 @@
             </td>
             
             <td>
-                @Html.ActionLink("Delete", "Delete", new { user = Model, roleId = Model.Roles[i].RoleID })
+                @Html.ActionLink("Delete", "Delete", new { userID = Model.UserID, roleID = Model.Roles[i].RoleID })
             </td>
         </tr>
     }

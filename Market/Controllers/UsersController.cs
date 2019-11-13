@@ -135,7 +135,7 @@ namespace Market.Controllers
             }
 
             var roles = roleManager.Roles.ToList();
-            var role = roles.ToList().Find(r => r.Id == roleID);
+            var role = roles.Find(r => r.Id == roleID);
             if (!userManager.IsInRole(userID, role.Name))
             {
                 userManager.AddToRole(userID, role.Name);
@@ -163,6 +163,49 @@ namespace Market.Controllers
             return View("Roles", userView);
         }
 
+        public ActionResult Delete(string userID, string roleID)
+        {
+            if (string.IsNullOrEmpty(userID) || string.IsNullOrEmpty(roleID))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+            var user = userManager.Users.ToList().Find(u => u.Id == userID);
+            var role = roleManager.Roles.ToList().Find(r => r.Id == roleID);
+
+            if (userManager.IsInRole(user.Id, role.Name))
+            {
+                userManager.RemoveFromRole(user.Id, role.Name);
+            }
+
+            //Prepare the view to return
+            var users = userManager.Users.ToList();
+            var roles = roleManager.Roles.ToList();
+            var rolesView = new List<RoleView>();
+
+            foreach (var item in user.Roles)
+            {
+                role = roles.Find(r => r.Id == item.RoleId);
+                var roleView = new RoleView
+                {
+                    Name = role.Name,
+                    RoleID = role.Id,
+                };
+                rolesView.Add(roleView);
+            }
+
+            var userView = new UserView
+            {
+                EMail = user.Email,
+                Name = user.UserName,
+                Roles = rolesView,
+                UserID = user.Id
+            };
+            return View("Roles", userView);
+        }
 
         protected override void Dispose(bool disposing)
         {

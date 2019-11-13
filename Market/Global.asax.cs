@@ -58,6 +58,26 @@ namespace Market
             {
                 userManager.AddToRole(user.Id, "Delete");
             }
+
+            //if (!userManager.IsInRole(user.Id, "Order"))
+            //{
+            //    userManager.AddToRole(user.Id, "Order");
+            //}
+
+            //if (!userManager.IsInRole(user.Id, "Admin"))
+            //{
+            //    userManager.AddToRole(user.Id, "Admin");
+            //}
+
+            //if (!userManager.IsInRole(user.Id, "Inventories"))
+            //{
+            //    userManager.AddToRole(user.Id, "Inventories");
+            //}
+
+            //if (!userManager.IsInRole(user.Id, "Shoppings"))
+            //{
+            //    userManager.AddToRole(user.Id, "Shoppings");
+            //}
         }
 
         private void CreateSuperUser(ApplicationDbContext db)

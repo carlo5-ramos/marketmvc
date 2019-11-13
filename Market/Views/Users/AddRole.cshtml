@@ -6,7 +6,7 @@
 <h2>Add Role to User: @Model.Name</h2>
 <h3>@ViewBag.Error</h3>
 
-@using (Html.BeginForm("AddRole", "Users", FormMethod.Post))
+@using (Html.BeginForm("AddRole", "Users", new { userID = Model.UserID }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
